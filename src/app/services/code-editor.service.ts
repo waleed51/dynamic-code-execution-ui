@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SourceCode } from '../models/sourceCode';
 import { HttpClient } from '@angular/common/http';
+import { SnippetExecutionPayload } from '../models/SnippetExecutionPayload';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class CodeEditorService {
   }
 
   // Execute a snippet
-  executeSnippet(payload: { id: number; name: string; parameters: any[] }): Observable<any> {
+  executeSnippet(payload: SnippetExecutionPayload): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/execute`, payload);
   }
 }

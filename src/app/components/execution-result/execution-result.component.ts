@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CodeEditorService } from '../../services/code-editor.service';
+import { SnippetExecutionPayload } from '../../models/SnippetExecutionPayload';
 
 @Component({
   selector: 'app-execution-result',
@@ -10,7 +10,7 @@ import { CodeEditorService } from '../../services/code-editor.service';
 export class ExecutionResultComponent {
   snippetId: number = 0;
   methodName: string = '';
-  parameters: any[] = [];
+  parameters: string = ''; // Bind as a string, later parsed as JSON
   result: any;
 
   constructor(private codeEditorService: CodeEditorService) {}
@@ -20,13 +20,27 @@ export class ExecutionResultComponent {
       alert('Snippet ID and Method Name are required!');
       return;
     }
+  
+    let parsedParameters: any[] = [];
 
-    const payload = {
+    try {
+      
+      parsedParameters = this.parameters ? JSON.parse(this.parameters) : [];
+      console.log(parsedParameters)
+      if (!Array.isArray(parsedParameters) || !this.parameters) {
+        throw new Error("Parameters must be a JSON array.");
+      }
+    } catch (error) {
+      alert('Invalid parameters! Please enter a valid JSON array.');
+      return;
+    }
+  
+     const payload: SnippetExecutionPayload = {
       id: this.snippetId,
       name: this.methodName,
-      parameters: this.parameters,
+      parameters: parsedParameters,
     };
-
+  
     this.codeEditorService.executeSnippet(payload).subscribe(
       (response: any) => {
         this.result = response;
