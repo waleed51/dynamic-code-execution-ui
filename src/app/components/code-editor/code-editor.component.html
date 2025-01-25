@@ -1,0 +1,14 @@
+<!-- we can use prime-ng, angular-material  -->
+<!-- we can use a better structure than this and create a module for code editor  -->
+<!-- we can use enhanced desgin for it and also best valiation  -->
+
+<div class="editor-container">
+    <h2 class="title">Code Editor</h2>
+    <textarea
+      [(ngModel)]="code"
+      class="editor"
+      placeholder="Write your C# code here..."
+    ></textarea>
+    <button class="save-button" (click)="saveCode()">Save Code</button>
+  </div>
+  

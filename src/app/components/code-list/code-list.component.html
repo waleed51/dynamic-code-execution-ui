@@ -1,0 +1,11 @@
+<div class="files-container">
+    <h2 class="title">Saved Code Files</h2>
+    <div
+      *ngFor="let file of sourceFiles"
+      (click)="selectFile(file)"
+      class="file-item"
+    >
+      {{ file.name }}
+    </div>
+  </div>
+  
