@@ -4,6 +4,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ![image](https://github.com/user-attachments/assets/505106d1-3276-43fa-ab0f-0ebf6727640d)
 
+![image](https://github.com/user-attachments/assets/d5e801f3-f475-4966-9656-7cd2035b74bd)
+
+
+![image](https://github.com/user-attachments/assets/f7109a0a-5710-4d0c-aeed-397988aba777)
+
+
 ![execute code result](https://github.com/user-attachments/assets/66958cd4-1f1e-42fc-b5f3-dab7f344084e)
 
 
