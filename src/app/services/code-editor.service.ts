@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CodeEditorService {
-  private baseUrl = 'http://localhost:44350/api/CodeEditor'; // Backend API base URL
+  private baseUrl = 'https://localhost:44350/api/CodeEditor'; // Backend API base URL
 
   constructor(private http: HttpClient) {}
 
