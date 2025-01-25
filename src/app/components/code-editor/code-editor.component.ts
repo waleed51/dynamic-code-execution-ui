@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CodeEditorService } from '../../services/code-editor.service';
 
 @Component({
   selector: 'app-code-editor',
@@ -9,17 +10,32 @@ import { FormsModule } from '@angular/forms';
 })
 //we can use a service for http calls and inject it here
 export class CodeEditorComponent {
-  code: string = '';
+  segmentName: string = ''; // Holds the segment name
+  code: string = ''; // Holds the code
 
-  constructor(private http: HttpClient) {}
+  constructor(private codeEditorService: CodeEditorService) {}
 
   saveCode() {
-    //we can use a servive
-    // we can add API fixed URL in environment file and use it here 
-    // we can use error validation for the API Errors
-    const sourceFile = { name: 'NewCodeFile', codeContent: this.code };
-    this.http.post('/api/CodeEditor/snippet', sourceFile).subscribe(() => {
-      alert('Code saved successfully!');
-    });
+    if (!this.segmentName || !this.code) {
+      alert('Segment Name and Code are required!');
+      return;
+    }
+
+    const snippet = {
+      segmentName: this.segmentName,
+      code: this.code,
+    };
+
+    this.codeEditorService.addSnippet(snippet).subscribe((response:any) => {
+        console.log('Snippet saved:', response);
+        alert('Snippet saved successfully!');
+        this.segmentName = '';
+        this.code = '';
+      },
+      (error:any) => {
+        console.error('Error saving snippet:', error);
+        alert('Failed to save snippet.');
+      }
+    );
   }
 }

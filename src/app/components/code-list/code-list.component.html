@@ -1,11 +1,21 @@
-<div class="files-container">
-    <h2 class="title">Saved Code Files</h2>
-    <div
-      *ngFor="let file of sourceFiles"
-      (click)="selectFile(file)"
-      class="file-item"
-    >
-      {{ file.name }}
-    </div>
+<div class="list-container">
+  <h2 class="list-title">Saved Code List</h2>
+  <div class="table-responsive">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Segment Name</th>
+          <th>Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let snippet of snippets">
+          <td>{{ snippet.id }}</td>
+          <td>{{ snippet.segmentName }}</td>
+          <td>{{ snippet.code }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
+</div>

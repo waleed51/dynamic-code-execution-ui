@@ -1,5 +1,31 @@
 <div class="result-container">
-    <h2 class="title">Execution Result</h2>
-    <pre class="execution-result">{{ result }}</pre>
+  <h2 class="title">Execute Snippet</h2>
+
+  <input
+    type="number"
+    placeholder="Enter Snippet ID"
+    [(ngModel)]="snippetId"
+    class="input-field"
+  />
+
+  <input
+    type="text"
+    placeholder="Enter Method Name"
+    [(ngModel)]="methodName"
+    class="input-field"
+  />
+
+  <textarea
+    rows="4"
+    placeholder="Enter Parameters (JSON array)"
+    [(ngModel)]="parameters"
+    class="textarea-field"
+  ></textarea>
+
+  <button (click)="executeSnippet()" class="execute-button">Execute</button>
+
+  <div *ngIf="result" class="result-output">
+    <h3>Execution Result:</h3>
+    <pre class="result-data">{{ result | json }}</pre>
   </div>
-  
+</div>

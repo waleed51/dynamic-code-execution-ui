@@ -3,12 +3,16 @@
 <!-- we can use enhanced desgin for it and also best valiation  -->
 
 <div class="editor-container">
-    <h2 class="title">Code Editor</h2>
-    <textarea
-      [(ngModel)]="code"
-      class="editor"
-      placeholder="Write your C# code here..."
-    ></textarea>
-    <button class="save-button" (click)="saveCode()">Save Code</button>
+  <h2 class="title">Code Editor</h2>
+  <div class="input-container">
+    <input
+      type="text"
+      placeholder="Enter Segment Name"
+      [(ngModel)]="segmentName"
+      class="input-field"
+    />
   </div>
   
+  <textarea [(ngModel)]="code" class="editor" placeholder="Write your C# code here..."></textarea>
+  <button class="save-button" (click)="saveCode()">Save Code</button>
+</div>

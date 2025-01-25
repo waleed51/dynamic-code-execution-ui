@@ -1,28 +1,28 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { SourceCode } from '../../models/sourceCode';
+import { CodeEditorService } from '../../services/code-editor.service';
 
 @Component({
   selector: 'app-code-list',
   templateUrl: './code-list.component.html',
   styleUrl: './code-list.component.css'
 })
-export class CodeListComponent {
-  sourceFiles: any[] = [];
+export class CodeListComponent implements OnInit {
+  snippets: SourceCode[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private codeEditorService: CodeEditorService) {}
 
   ngOnInit() {
-    this.loadSourceFiles();
-  }
-
-  loadSourceFiles() {
-    this.http.get<any[]>('/api/CodeEditor/snippets').subscribe((data) => {
-      this.sourceFiles = data;
-    });
-  }
-
-  selectFile(file: any) {
-    console.log('Selected file:', file);
+    this.codeEditorService.getSnippets().subscribe(
+      (data : any) => {
+        this.snippets = data;
+      },
+      (error: any) => {
+        console.error('Error fetching snippets:', error);
+        alert('Failed to fetch snippets.');
+      }
+    );
   }
 }
